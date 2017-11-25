@@ -2,12 +2,14 @@ import 'core-js/es6/reflect';
 import 'core-js/es7/reflect';
 import 'zone.js/dist/zone-node';
 
-import { renderModuleFactory } from '@angular/platform-server';
-import { enableProdMode } from '@angular/core';
+require('import-export');
+
+import {renderModuleFactory} from '@angular/platform-server';
+import {enableProdMode} from '@angular/core';
 
 import * as express from 'express';
-import { join } from 'path';
-import { readFileSync } from 'fs';
+import {join} from 'path';
+import {readFileSync} from 'fs';
 
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
@@ -21,17 +23,17 @@ const DIST_FOLDER = join(process.cwd(), 'dist');
 // Our index.html we'll use as our template
 const template = readFileSync(join(DIST_FOLDER, 'browser', 'index.html')).toString();
 
-const { AppServerModuleNgFactory } = require('./lib/src/app/app.server.module.ngfactory');
+const {AppServerModuleNgFactory} = require('./lib/src/app/app.server.module.ngfactory');
 
-const { provideModuleMap } = require('@nguniversal/module-map-ngfactory-loader');
+const {provideModuleMap} = require('@nguniversal/module-map-ngfactory-loader');
 
 app.engine('html', (_, options, callback) => {
-  renderModuleFactory(AppServerModuleNgFactory, {
-    document: template,
-    url: options.req.url,
-  }).then(html => {
-    callback(null, html);
-  });
+    renderModuleFactory(AppServerModuleNgFactory, {
+        document: template,
+        url: options.req.url,
+    }).then(html => {
+        callback(null, html);
+    });
 });
 
 app.set('view engine', 'html');
@@ -42,10 +44,10 @@ app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
 
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
-  res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
+    res.render(join(DIST_FOLDER, 'browser', 'index.html'), {req});
 });
 
 // Start up the Node server
 app.listen(PORT, () => {
-  console.log(`Node server listening on http://localhost:${PORT}`);
+    console.log(`Node server listening on http://localhost:${PORT}`);
 });

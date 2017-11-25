@@ -1,10 +1,7 @@
-<h1>Angular Webpack Seed</h1>
-
-<div style="margin: 20px 0;">
-  <a routerLink="/">Home</a>
-  <a routerLink="/lazy">Lazy</a>
-</div>
-
-<div>
-  <router-outlet></router-outlet>
-</div>
+<app-header></app-header>
+<h1>Universal Demo using Angular and Angular CLI</h1>
+<a [routerLink]="['/'] | localize">Home</a>
+<a [routerLink]="['/home'] | localize">Home</a>
+<a routerLink="/lazy">Lazy</a>
+<a routerLink="/lazy/nested">Lazy_Nested</a>
+<router-outlet></router-outlet>
