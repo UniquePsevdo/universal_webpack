@@ -20,8 +20,7 @@ export class LocalizeUniversalLoader extends LocalizeParser {
      */
     public load (routes: Routes): Promise<any> {
         return new Promise((resolve: any) => {
-            /*let data: any = JSON.parse(fs.readFileSync( + '/browser/assets/locales.json', 'utf8'));*/
-            let data: any = JSON.parse(fs.readFileSync( ( 'assets/locales.json'), 'utf8'));
+            let data: any = JSON.parse(fs.readFileSync( ( 'src/app/assets/locales.json'), 'utf8'));
             this.locales = data.locales;
             this.prefix = data.prefix;
             this.init(routes).then(resolve);
@@ -41,7 +40,7 @@ export class TranslateUniversalLoader implements TranslateLoader {
      */
     public getTranslation(lang: string): Observable<any> {
         return Observable.create(observer => {
-            observer.next(JSON.parse(fs.readFileSync(( 'assets/locales/' + lang + '.json'), 'utf8')));
+            observer.next(JSON.parse(fs.readFileSync(( 'src/app/assets/locales/' + lang + '.json'), 'utf8')));
             observer.complete();
         });
     }
