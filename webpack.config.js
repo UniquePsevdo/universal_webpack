@@ -1,4 +1,5 @@
-const {resolve} = require('path');
+const path = require('path');
+const resolve = path.resolve;
 const {AngularCompilerPlugin, PLATFORM} = require('@ngtools/webpack');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
@@ -9,7 +10,6 @@ const extract = require('extract-text-webpack-plugin');
 const portfinder = require('portfinder');
 const nodeModules = resolve(__dirname, 'node_modules');
 const nodeExternals = require('webpack-node-externals');
-const favicon = require('serve-favicon');
 const entryPoints = ["inline", "polyfills", "sw-register", "styles", "vendor", "app"];
 
 module.exports = function (options, webpackOptions) {
@@ -20,27 +20,29 @@ module.exports = function (options, webpackOptions) {
 
     if (webpackOptions.p) {
         entry = {app: root('src/main.prod.ts')};
-        config = webpackMerge({}, config, {
+        /*config = webpackMerge({}, config, {
             // /(node_modules|main\..*\.js)/,
             externals: [nodeExternals({
                 whitelist: [
                     /^@angular\/material/,
                     /^@ngx-translate\/core/,
                     /^@angular/,
+                    /^@rxjs/
                 ]
             })],
-        });
+        });*/
     } else {
         entry = {app: root('src/main.ts')};
     }
 
     config = webpackMerge({}, config, {
-        target: 'node',
+        target: 'web',
         entry: entry,
         resolve: {
             extensions: ['.ts', '.js', '.json'],
             modules: ['node_modules', nodeModules]
         },
+
         resolveLoader: {
             modules: [nodeModules, 'node_modules']
         },
@@ -53,6 +55,7 @@ module.exports = function (options, webpackOptions) {
                         minimize: true,
                         removeAttributeQuotes: false,
                         caseSensitive: true,
+                        customAttrSurround: [[/#/, /(?:)/], [/\*/, /(?:)/], [/\[?\(?/, /(?:)/]],
                         customAttrSurround: [[/#/, /(?:)/], [/\*/, /(?:)/], [/\[?\(?/, /(?:)/]],
                         customAttrAssign: [/\)?\]?=/]
                     }

@@ -13,6 +13,7 @@ module.exports = {
             /^@angular\/material/,
             /^@ngx-translate\/core/,
             /^@angular/,
+            /^@rxjs/
         ]
     })],
     output: {
