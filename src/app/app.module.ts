@@ -19,7 +19,7 @@ import { LangSwitcherComponent } from './components/app-lang-swicher/app-lang-sw
 import { AdminComponent } from './components/app-admin/app-admin.component';
 
 export const routes: Routes = [
-    {path: '', component: AppComponent },
+    {path: '', component: HomeComponent, pathMatch: 'full' },
     {path: 'home', component: HomeComponent},
     {path: 'admin', component: AdminComponent},
     {path: 'lazy', loadChildren: './lazy/lazy.module#LazyModule'},

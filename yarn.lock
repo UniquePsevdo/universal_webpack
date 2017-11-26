@@ -3853,10 +3853,6 @@ postcss@^6.0.1:
     source-map "^0.6.1"
     supports-color "^4.4.0"
 
-preboot@^5.1.7:
-  version "5.1.7"
-  resolved "https://registry.yarnpkg.com/preboot/-/preboot-5.1.7.tgz#0633cad87ae676955e3dc34aaf46f3523090181f"
-
 prepend-http@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"
