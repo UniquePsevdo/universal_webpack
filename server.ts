@@ -4,12 +4,12 @@ import 'zone.js/dist/zone-node';
 
 require('import-export');
 
-import {renderModuleFactory} from '@angular/platform-server';
-import {enableProdMode} from '@angular/core';
+import { renderModuleFactory } from '@angular/platform-server';
+import { enableProdMode } from '@angular/core';
 
 import * as express from 'express';
-import {join} from 'path';
-import {readFileSync} from 'fs';
+import { join } from 'path';
+import { readFileSync } from 'fs';
 
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();

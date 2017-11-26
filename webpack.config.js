@@ -20,17 +20,6 @@ module.exports = function (options, webpackOptions) {
 
     if (webpackOptions.p) {
         entry = {app: root('src/main.prod.ts')};
-        /*config = webpackMerge({}, config, {
-            // /(node_modules|main\..*\.js)/,
-            externals: [nodeExternals({
-                whitelist: [
-                    /^@angular\/material/,
-                    /^@ngx-translate\/core/,
-                    /^@angular/,
-                    /^@rxjs/
-                ]
-            })],
-        });*/
     } else {
         entry = {app: root('src/main.ts')};
     }
